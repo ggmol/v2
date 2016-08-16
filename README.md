@@ -7,7 +7,7 @@ Input.conf is the other group logstash configure file.
 twitter_logstash.conf is our group logstash configure file.
 
 1. Install logstash and elasticsearch first.
-2. Run run logstash with twitter_logstash.conf 
+2. Run run logstash with twitter_logstash.conf to stream tweets to your local elasticsearch data base.
   ./logstash -f twitter_logstash.conf
 3. start app.js
 
