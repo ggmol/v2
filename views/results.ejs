@@ -1,0 +1,13 @@
+<% include partials/header%>
+<h1>Found Tweets!</h1>
+
+<p>Found Tweets!</p>
+
+<% data["hits"]["hits"].forEach(function(tweet){ %>
+	<div><strong>Tweet: </strong> <%= tweet["_source"]["text"]%> </div>
+
+	<div><strong>Source:</strong> <%= tweet["_source"]["source"] %> </div>
+	<div>================================</div>
+<% }); %>
+
+<% include partials/footer%>
