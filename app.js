@@ -8,6 +8,7 @@ var express = require("express"),
 // var documents = require('documents');
 // app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
+app.use(express.static(__dirname + "/public"));
 
 // elastic search
 // var client = new elasticsearch.Client({
@@ -136,23 +137,16 @@ app.get("/", function(req, res){
 
 app.get("/results", function(req, res){
 	var query = req.query.search;
-	var url = "http://localhost:9200/idx_ls1/tweet_ls/_search?q=" + query;
-	//var url = "http://www.omdbapi.com/?s=" + query;
+	var url = "http://localhost:9200/logstash-2016.08.25/logs/_search?q=" + query;
 	
 	request(url, function(error, response, body){
-		//if(!error && response.statuses === 200){
-			
 			var bodyObj = JSON.parse(body);
-			//console.log(body);
-			//res.send(bodyObj["hits"]["hits"][0])
-			res.render("results.ejs", {data: bodyObj});
-		//}
+			res.render("results.ejs", {data: bodyObj, keyword: query});
+		
 	});
 });
 
-// app.get("/found", function(req, res){
-// 	res.render("found", {storedTweets: storedTweets});
-// });
+
 
 
 
